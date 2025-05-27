@@ -1,0 +1,7 @@
+
+   
+   ;SADECE 1 TANE BASMA
+   
+MOV AH,02   ;MOD
+MOV DL,'S'
+INT 21H

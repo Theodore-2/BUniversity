@@ -1,0 +1,1 @@
+rot 13 is a simple encryption method, its not requaire any key. Rot13 is easily understandble method. Like I said if I havn't a knowalage about rot13 it takes a litle time to understand.

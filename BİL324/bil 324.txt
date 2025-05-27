@@ -1,0 +1,8 @@
+bil 324
+
+EDX, ESP, EBP, ESI, EDI Nedir?
+EDX: General-purpose (genel amaçlı) bir registırdır, genelde döngüler veya çarpma bölme gibi işlemler için kullanılır.
+ESP: Stack Pointer. Yığın (stack) adresini işaret eder ve yığıt üzerindeki verilerin başlangıç adresini tutar.
+EBP: Base Pointer. Yığın üzerinde sabit bir referans noktası sağlamak için kullanılır. Genellikle fonksiyonların yerel değişkenlerine erişmek için kullanılır.
+ESI: Source Index. Veri işlemleri için kaynak adresi tutar. String işlemleri gibi veri taşımalarında kullanılır.
+EDI: Destination Index. Hedef adresi işaret eder. Özellikle string işlemlerinde hedef konumunu belirtmek için kullanılır.

@@ -1,0 +1,5 @@
+
+       ;INPUT BEKLER
+
+MOV AH,01
+INT 21H

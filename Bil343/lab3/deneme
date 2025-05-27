@@ -1,0 +1,107 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Calculator {
+    public double add(double a, double b) {
+        return a + b;
+    }
+
+    public double subtract(double a, double b) {
+        return a - b;
+    }
+
+    public double multiply(double a, double b) {
+        return a * b;
+    }
+
+    public double divide(double a, double b) {
+        if (b == 0) {
+            throw new ArithmeticException("Cannot divide by zero");
+        }
+        return a / b;
+    }
+
+    public static void main(String[] args) {
+        new CalculatorGUI(); // GUI başlatılır
+    }
+}
+
+class CalculatorGUI extends JFrame implements ActionListener {
+    private final JTextField display;
+    private final Calculator calculator;
+    private String operator = "";
+    private double firstOperand = 0;
+    private boolean isNewInput = true;
+
+    public CalculatorGUI() {
+        calculator = new Calculator();
+        display = new JTextField();
+        display.setEditable(false);
+        display.setFont(new Font("Arial", Font.BOLD, 24));
+
+        setLayout(new BorderLayout());
+        add(display, BorderLayout.NORTH);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(4, 4));
+
+        String[] buttons = {"7", "8", "9", "/",
+                "4", "5", "6", "*",
+                "1", "2", "3", "-",
+                "C", "0", "=", "+"};
+
+        for (String text : buttons) {
+            JButton button = new JButton(text);
+            button.setFont(new Font("Arial", Font.BOLD, 20));
+            button.addActionListener(e -> CalculatorGUI.this.actionPerformed(e));
+            buttonPanel.add(button);
+        }
+
+        add(buttonPanel, BorderLayout.CENTER);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400, 400);
+        setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String command = e.getActionCommand();
+
+        try {
+            if ("0123456789".contains(command)) {
+                if (isNewInput) {
+                    display.setText(command);
+                    isNewInput = false;
+                } else {
+                    display.setText(display.getText() + command);
+                }
+            } else if ("+-*/".contains(command)) {
+                operator = command;
+                firstOperand = Double.parseDouble(display.getText());
+                isNewInput = true;
+            } else if ("=".equals(command)) {
+                double secondOperand = Double.parseDouble(display.getText());
+                double result = 0;
+
+                switch (operator) {
+                    case "+" -> result = calculator.add(firstOperand, secondOperand);
+                    case "-" -> result = calculator.subtract(firstOperand, secondOperand);
+                    case "*" -> result = calculator.multiply(firstOperand, secondOperand);
+                    case "/" -> result = calculator.divide(firstOperand, secondOperand);
+                }
+
+                display.setText(String.valueOf(result));
+                isNewInput = true;
+            } else if ("C".equals(command)) {
+                display.setText("");
+                firstOperand = 0;
+                operator = "";
+                isNewInput = true;
+            }
+        } catch (ArithmeticException | NumberFormatException ex) {
+            display.setText("Error: Invalid operation");
+            isNewInput = true;
+        }
+    }
+}

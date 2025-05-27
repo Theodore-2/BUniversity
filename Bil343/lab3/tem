@@ -1,0 +1,101 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Calculator {
+    public double add(double a, double b) {
+        return a + b;
+    }
+    public double subtract(double a, double b) {
+        return a - b;
+    }
+    public double multiply(double a, double b) {
+        return a * b;
+    }
+    public double divide(double a, double b) {
+        if (b == 0) {
+            throw new ArithmeticException("Cannot divide by zero");
+        }
+        return a / b;
+    }
+}
+
+class CalculatorGUI extends JFrame implements ActionListener {
+
+    private JTextField display;
+    private Calculator calculator;
+
+    public CalculatorGUI() {
+        calculator = new Calculator();
+        display = new JTextField();
+
+        setLayout(new BorderLayout());
+        add(display, BorderLayout.NORTH);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(4, 4));
+
+        // Add buttons 0-9 and operations
+        String[] buttons = {"7", "8", "9", "/",
+                "4", "5", "6", "*",
+                "1", "2", "3", "-",
+                "C", "0", "=", "+"};
+
+        for (String text : buttons) {
+            JButton button = new JButton(text);
+            button.addActionListener(this);
+            buttonPanel.add(button);
+        }
+        add(buttonPanel, BorderLayout.CENTER);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400, 400);
+        setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String command = e.getActionCommand();
+
+        if ((command.charAt(0) >= '0' && command.charAt(0) <= '9') || command.charAt(0) == '.') {
+            display.setText(display.getText() + command);
+        } else if (command.equals("C")) {
+            display.setText("");
+        } else if (command.equals("=")) {
+            try {
+                String[] tokens = display.getText().split(" ");
+                double result = 0;
+                if (tokens.length == 3) {
+                    double num1 = Double.parseDouble(tokens[0]);
+                    double num2 = Double.parseDouble(tokens[2]);
+                    String operator = tokens[1];
+
+                    switch (operator) {
+                        case "+":
+                            result = calculator.add(num1, num2);
+                            break;
+                        case "-":
+                            result = calculator.subtract(num1, num2);
+                            break;
+                        case "*":
+                            result = calculator.multiply(num1, num2);
+                            break;
+                        case "/":
+                            result = calculator.divide(num1, num2);
+                            break;
+                    }
+                    display.setText(result + "");
+                }
+            } catch (Exception ex) {
+                display.setText("Error");
+            }
+        } else {
+            display.setText(display.getText() + " " + command + " ");
+        }
+    }
+
+    public static void main(String[] args) {
+        new CalculatorGUI();
+
+
+    }
+}

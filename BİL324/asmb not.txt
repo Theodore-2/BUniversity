@@ -1,0 +1,20 @@
+SI ile DI Arasındaki Fark:
+	SI (Source Index): Kaynak (source) adresini belirtir.
+	DI (Destination Index): Hedef (destination) adresini belirtir.
+
+
+FLAGS
+	CF: CARRY FLAG 	;TAŞMA VARSA 1 OLUR
+	SF: SIGN FLAG  	;SONUÇ NEGATİF İSE 1 OLUR
+	AF: AUXILARITY 	;BİTLER ARASINDA TAŞMA/BORÇ VARSA 1 OLUR
+	CF: CARRY	;EN SOLDAKİ(MSB) BİTTEN TAŞMA VARSA 1 OLUR
+	PF: PARITY	;SONUÇTAKİ 1 LERİN SAYISI ÇİFT İSE 1 OLUR
+	OF: OVERFLOW 	;TOTAL BİT DEĞERİNİ AŞARSA 1 OLUR
+	SF: SIGN 	;MSB 1 İSE 1 OLUR
+
+
+CMP DESTINATION,SOURCE	;ÇIKARMA İŞLEMİ GİBİ Bİ ŞEY OLARAK DÜŞÜNÜLEBİLİR
+			;destination==source olursa yapı 0 olur böylece ZF=1
+			;destination < source CF=1
+			;sonuç negatife dönerse SF=1
+			
