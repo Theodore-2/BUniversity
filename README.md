@@ -1,21 +1,51 @@
-# Course Material Downloader
+# Başkent University Course Material Manager
 
-I created this project to help my friends who are taking the same courses as me. The goal is to make it easier for everyone to access and download the course materials without repeating the same steps manually.
+> I created this repository to help my fellow classmates at Başkent University access and manage course materials more easily. This is especially useful for those who are taking the same classes and want a streamlined way to get updated content without repetitive steps.
 
 ---
 
 ## 📥 How to Download Any Course Material
 
-To download the content for a specific course, just run the program with the course name as an argument.
+This project assumes that materials are stored in this GitHub repository and organized by course code.
 
-### Example:
+### 🔄 Step-by-Step Instructions
 
 ```bash
+# Step 1: Clone the repository (only once)
+git clone https://github.com/Theodore-2/Baskent-University.git
+cd Baskent-University
+
+# Step 2: Pull latest updates (run this regularly)
+git pull origin main
+
+# Step 3: Run the program with your course code
 ./program_name bil344
 ```
 
-Replace `bil344` with any other course code you want. The program will automatically fetch the correct file if available.
+> 💡 Replace `bil344` with any course you want to access.  
+> For example: `cse395`, `bil332`, `bil218`, etc.
 
-That's all. Simple, fast, and for everyone.
+The program will automatically locate and process the corresponding content inside the repository.
 
-– Arda Çimen
+---
+
+## 🔧 Customization
+
+You can edit or expand this tool to support:
+- Downloading external files (from shared drives or APIs)
+- Logging update times
+- Exporting materials to a specific folder structure
+
+---
+
+## 🤝 Contribution
+
+Pull requests and suggestions are always welcome, especially if you’re improving course handling logic or adding support for new formats.
+
+---
+
+## 👨‍💻 Author
+
+Maintained by **Arda Çimen** – Computer Engineering, Başkent University  
+Feel free to fork and reuse.
+
