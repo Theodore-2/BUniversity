@@ -12,8 +12,8 @@ This project assumes that materials are stored in this GitHub repository and org
 
 ```bash
 # Step 1: Clone the repository (only once)
-git clone https://github.com/Theodore-2/Baskent-University.git
-cd Baskent-University
+git clone https://github.com/Theodore-2/BUniversity.git
+cd BUniversity
 
 # Step 2: Pull latest updates (run this regularly)
 git pull origin main
